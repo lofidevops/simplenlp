@@ -8,7 +8,7 @@ HIGH
 
 MEDIUM
 
-* Redirect site index to wordy index
+* ~~Redirect site index to wordy index~~
 * Use `decouple` for environment variables
 * Import NLTK data on site startup
 * ~~Use a popular stylesheet~~

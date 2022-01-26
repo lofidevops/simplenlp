@@ -80,7 +80,7 @@ path of an empty folder, for example `/var/www/media`
    # start Django site
    ```
 
-3. Open http://localhost:8080/wordy/ in your browser to see results
+3. Open http://localhost:8080 in your browser to see results
 
 4. Hover over a sample to see the full sentence containing the
    interesting word.
