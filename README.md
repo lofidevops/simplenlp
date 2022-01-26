@@ -7,7 +7,7 @@ A simple example of natural language processing.
 ### Primary user story
 
 I am an end-user with many documents. I want to see  which
-interesting words occur most frequently,  so that I  can
+interesting words occur most frequently, so that I  can
 identify important topics across all documents.
 
 ### Scenario
@@ -21,18 +21,23 @@ And display a sample sentence from each document
 
 ### Sample output
 
-| Word (occurrences) | Documents | Sample sentences                           |
-|--------------------|-----------|--------------------------------------------|
-| philosophy (42)    | x, y, z   | I don't have time for philosophy (x)       |
-|                    |           | Surely this was a touch of... (y)          |
-|                    |           | Still, her pay-as-you-go philosophy... (z) |
+| Word       | Count | Samples                                             |
+|------------|-------|-----------------------------------------------------|
+| philosophy | 42    | I don't have time for philosophy... (document X)    |
+|            |       | Surely this was a touch of... (document Y)          |
+|            |       | Still, her pay-as-you-go philosophy... (document Z) |
+
+### Screenshot (work in progress)
+
+![Interesting words by frequency](screenshot.png)
 
 ### Out of scope
 
+* Access rights and granular permissions
 * Database instance (i.e. other than SQLite)
 * File upload
+* Fully offline operation
 * Microservice architecture
-* Permissions
 * REST API
 
 ## Run from source

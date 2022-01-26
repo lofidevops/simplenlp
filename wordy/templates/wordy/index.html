@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Wordy results</title>
+
+    <style>
+        body {font-family: sans-serif;}
+
+        #wordy {
+            font-family: sans-serif;
+            border-collapse: collapse;
+        }
+
+        #wordy caption {
+            font-weight: bold;
+            font-size: large;
+            color: #333;
+            padding: 12px;
+        }
+
+        #wordy td, #wordy th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            vertical-align: text-top;
+        }
+
+        #wordy tr:nth-child(even) {background-color: #f2f2f2;}
+
+        #wordy tr:hover {background-color: #ddd;}
+
+        #wordy th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            background-color: #04AA6D;
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<h1>Wordy results</h1>
+
+<table id="wordy">
+    <caption>Interesting words by frequency</caption>
+    <thead>
+        <tr>
+            <th scope="colgroup">Count</th>
+            <th scope="colgroup">Word</th>
+            <th scope="colgroup">Samples</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for result in word_by_frequency %}
+            <tr>
+                <td>{{ result.count }}</td>
+                <td>{{ result.word }}</td>
+                <td>
+                    {% for document, sample in result.occurrence.items %}
+                        <p title="{{ sample }}">{{ sample|truncatechars:20 }} ({{ document }})</p>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+</body>
+</html>
