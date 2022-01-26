@@ -1,18 +1,20 @@
 # Wordy document analyser
 
+A simple example of natural language processing.
+
 ## Specification
 
 ### Primary user story
 
 I am an end-user with many documents. I want to see  which
-interesting words occur the most frequently,  so that I
-can identify important topics across all documents.
+interesting words occur most frequently,  so that I  can
+identify important topics across all documents.
 
 ### Scenario
 
 ```gherkin
-Given documents are present
-When documents are parsed
+Given documents are parsed
+When the user opens the page
 Then display words sorted by frequency
 And display a sample sentence from each document
 ```
@@ -39,6 +41,9 @@ And display a sample sentence from each document
 
 * Python 3.8
 * [pipenv](https://pipenv.pypa.io/en/latest/install/)
+
+Set environment variable `MEDIA_ROOT` to the absolute
+path of an empty folder, for example `/var/www/media`
 
 ### Steps
 
@@ -72,3 +77,7 @@ And display a sample sentence from each document
 * To view database contents, visit the admin site
   http://localhost:8080/admin/ and log in with the superuser
   credentials created above.
+
+* To parse documents, visit the admin site and create a
+  document with the same name as a text file in the MEDIA
+  folder. For example, `doc1` for `doc1.txt`
