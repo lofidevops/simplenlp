@@ -19,6 +19,10 @@ Then display words sorted by frequency
 And display a sample sentence from each document
 ```
 
+### Notable features
+
+* Stopwords are removed
+
 ### Sample output
 
 | Word       | Count | Samples                                             |
@@ -37,6 +41,7 @@ And display a sample sentence from each document
 * Database instance (i.e. other than SQLite)
 * File upload
 * Fully offline operation
+* Languages other than English (American spelling?)
 * Microservice architecture
 * REST API
 
@@ -75,7 +80,10 @@ path of an empty folder, for example `/var/www/media`
    # start Django site
    ```
 
-3. Open http://localhost:8080 in your browser to see results
+3. Open http://localhost:8080/wordy/ in your browser to see results
+
+4. Hover over a sample to see the full sentence containing the
+   interesting word.
 
 **Notes**
 
@@ -83,6 +91,6 @@ path of an empty folder, for example `/var/www/media`
   http://localhost:8080/admin/ and log in with the superuser
   credentials created above.
 
-* To parse documents, visit the admin site and create a
-  document with the same name as a text file in the MEDIA
+* To upload documents, visit the admin site and create a
+  document entry with the same name as a text file in the MEDIA
   folder. For example, `doc1` for `doc1.txt`

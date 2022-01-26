@@ -3,7 +3,7 @@ HIGH
 * ~~Parse document on save~~
 * ~~Collate and display results~~
 * Upload document?
-* Remove stopwords and punctuation?
+* ~~Remove stopwords and punctuation~~
 * Unit tests
 
 MEDIUM
@@ -16,3 +16,5 @@ MEDIUM
 LOW
 
 * Add black/tidy instructions
+* Expand contractions
+* Link to document view

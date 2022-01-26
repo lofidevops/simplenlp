@@ -1,9 +1,12 @@
 import os
+
+from django.conf import settings
+from django.db import models
 from nltk import FreqDist
+from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize, sent_tokenize
 
-from django.db import models
-from django.conf import settings
+english_stop_words = set(stopwords.words("english"))
 
 
 class Document(models.Model):
@@ -46,9 +49,10 @@ class Document(models.Model):
 
         # save each word count, along with a sample sentence
         for word, count in frequencies.items():
-            sentence = Document.first_sentence_with_word(word, full_sentences)
-            wr = WordResult(name=word, document=self, count=count, sample=sentence)
-            wr.save()
+            if word.isalpha() and word.casefold() not in english_stop_words:
+                sentence = Document.first_sentence_with_word(word, full_sentences)
+                wr = WordResult(name=word, document=self, count=count, sample=sentence)
+                wr.save()
 
 
 class WordResult(models.Model):
