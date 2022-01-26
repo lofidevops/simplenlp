@@ -7,6 +7,7 @@ MEDIUM
 
 * Redirect site index to wordy index
 * Use `decouple` for environment variables
+* Import NLTK data on site startup
 
 LOW
 
