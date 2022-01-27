@@ -50,21 +50,23 @@ And display the updated results
 
 ### Notable features
 
+* Simple command to download NLTK natural language data
 * Stopwords (a, the, and...) are removed
 
 ### Limitations
 
 **This site is not production-ready!**
 
-* No file validation
+* Minimal file validation
 * No performance optimisation
+* Cannot specify download location for NLTK data
 * Requires admin access to delete documents
 
 ### Out of scope
 
 * Access rights and granular permissions
 * Database instance (i.e. other than SQLite)
-* Fully offline operation
+* Fully offline operation (no additional download steps required)
 * Languages other than English (American spelling?)
 * Microservice architecture
 * REST API
@@ -95,6 +97,11 @@ And display the updated results
    pipenv shell
    # activate virtual environment
 
+   python manage.py initwordy
+   # download natural language data (NLTK data)
+   # this can take 1-2 minutes
+   # default location is ~/nltk_data
+
    python manage.py migrate
    # create schema for SQLite database
 
@@ -108,10 +115,11 @@ And display the updated results
 3. Open http://localhost:8080 in your browser to see the latest
    results.
 
+      * If you get an error starting the site, or uploading
+        a file, you probably missed the `initwordy` step above.
 
 4. Upload a `.txt` file to add it to the results. (This might take
    a while. The page will refresh once done.)
-
 
 5. Hover over a sample to see the full sentence containing the
    interesting word.
@@ -121,7 +129,6 @@ And display the updated results
 * To view database contents, visit the admin site
   http://localhost:8080/admin/ and log in with the superuser
   credentials created above.
-
 
 * To remove a document from the results, you must delete it
   through the admin interface.

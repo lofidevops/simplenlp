@@ -7,14 +7,16 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 
 import wordy
 
-ViewData = namedtuple("ViewData", ["word", "count", "occurrence"])
+ViewData = namedtuple(
+    "ViewData", ["word", "count", "occurrence"]
+)  # simple structure to store a summary of results
 
 
 class Document(models.Model):
+    """A document with full text, ready for ingestion."""
+
     name = models.SlugField(unique=True)
-    full_text = models.TextField(
-        blank=True
-    )  # allows admin save as a workaround to uploading text files
+    full_text = models.TextField()
 
     def __str__(self):
         return self.name
@@ -34,6 +36,8 @@ class Document(models.Model):
         )
 
     def ingest(self):
+        """Perform natural language processing on this document and store the results. Previous results for this
+        document are replaced."""
 
         # delete existing results
         WordResult.objects.filter(document=self).delete()
@@ -52,6 +56,8 @@ class Document(models.Model):
 
 
 class WordResult(models.Model):
+    """Measurements for a single word in a single document."""
+
     name = models.SlugField()
     document = models.ForeignKey(Document, on_delete=models.CASCADE)
     count = models.IntegerField()
@@ -73,7 +79,6 @@ class WordResult(models.Model):
 
         # total count by word across all documents
         # (descending order, exclude words with a count of 1)
-        # TODO: add a column for stem and group by that
         total_queryset = (
             WordResult.objects.values("name")
             .distinct()

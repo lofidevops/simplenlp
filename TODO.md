@@ -9,9 +9,11 @@ HIGH
 MEDIUM
 
 * ~~Redirect site index to wordy index~~
-* Use `decouple` for environment variables
-* Import NLTK data on site startup
+* ~~Use `decouple` for environment variables~~ N/A
+* ~~Import NLTK data before startup~~
 * ~~Use a popular stylesheet~~
+* ~~Initialise database before startup~~ N/A
+* Add a lemma column
 
 LOW
 

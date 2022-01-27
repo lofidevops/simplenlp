@@ -1,3 +1,4 @@
-from nltk.corpus import stopwords
+import logging
 
-ENGLISH_STOP_WORDS = set(stopwords.words("english"))
+logger = logging.getLogger(__name__)
+ENGLISH_STOP_WORDS = None
