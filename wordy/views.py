@@ -3,12 +3,15 @@ from collections import namedtuple
 from django.db.models import Sum
 from django.shortcuts import render
 
+from .forms import UploadForm
 from .models import WordResult
 
 ViewData = namedtuple("ViewData", ["word", "count", "occurrence"])
 
 
 def index(request):
+
+    form = UploadForm()
     word_by_frequency = []
 
     # total count by word across all documents
@@ -32,6 +35,6 @@ def index(request):
 
         word_by_frequency.append(vd)
 
-    context = {"word_by_frequency": word_by_frequency}
+    context = {"form": form, "word_by_frequency": word_by_frequency}
 
     return render(request, "wordy/index.html", context)

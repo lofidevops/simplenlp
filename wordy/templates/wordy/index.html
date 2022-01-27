@@ -2,13 +2,18 @@
 <html lang="en">
 
 <head>
-    <title>Wordy results</title>
+    <title>Wordy analysis</title>
 
     <style>
         body {font-family: sans-serif;}
 
+        h1, h2, form, table {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         #wordy {
-            font-family: sans-serif;
             border-collapse: collapse;
         }
 
@@ -16,13 +21,14 @@
             font-weight: bold;
             font-size: large;
             color: #333;
-            padding: 12px;
+            padding: 0.5em;
         }
 
         #wordy td, #wordy th {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 0.5em;
             vertical-align: text-top;
+            text-align: left;
         }
 
         #wordy tr:nth-child(even) {background-color: #f2f2f2;}
@@ -30,10 +36,26 @@
         #wordy tr:hover {background-color: #ddd;}
 
         #wordy th {
-            padding-top: 12px;
-            padding-bottom: 12px;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
             background-color: #04AA6D;
             color: white;
+        }
+
+        input#id_file_upload {
+            border: none;
+            border-radius: 0.5em;
+            background-color: #f2f2f2;
+            padding: 1em;
+        }
+
+        input#submit {
+            border: none;
+            border-radius: 0.5em;
+            background-color: #04AA6D;
+            color: white;
+            font-weight: bold;
+            padding: 1em;
         }
 
     </style>
@@ -41,7 +63,17 @@
 
 <body>
 
-<h1>Wordy results</h1>
+<h1>Wordy analysis</h1>
+
+<h2>Add document</h2>
+
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input id="submit" type="submit" value="Upload">
+</form>
+
+<h2>Results</h2>
 
 <table id="wordy">
     <caption>Interesting words by frequency</caption>
