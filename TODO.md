@@ -2,7 +2,7 @@ HIGH
 
 * ~~Parse document on save~~
 * ~~Collate and display results~~
-* Upload document?
+* ~~Upload document~~
 * ~~Remove stopwords and punctuation~~
 * Unit tests
 

@@ -1,7 +1,5 @@
-import os
 from collections import namedtuple
 
-from django.conf import settings
 from django.db import models
 from django.db.models import Sum
 from nltk import FreqDist
@@ -34,11 +32,6 @@ class Document(models.Model):
         return next(
             (s for s in sentences if Document.is_word_in_sentence(word, s)), None
         )
-
-    def save(self, *args, **kwargs):
-        document_path = os.path.join(settings.MEDIA_ROOT, self.name + ".txt")
-        self.full_text = open(document_path).read()
-        super().save(*args, **kwargs)
 
     def ingest(self):
 
