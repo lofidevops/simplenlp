@@ -9,10 +9,11 @@ class WordyConfig(AppConfig):
     name = "wordy"
 
     def ready(self):
+
         try:
             wordy.ENGLISH_STOP_WORDS = set(stopwords.words("english"))
         except LookupError:
             wordy.ENGLISH_STOP_WORDS = set()
             wordy.logger.error(
-                f"Stop words could not be loaded. Did you run initwordy?"
+                f"LookupError while loading stop words. Did you run initwordy before starting the site?"
             )

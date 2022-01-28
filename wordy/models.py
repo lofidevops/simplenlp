@@ -21,20 +21,6 @@ class Document(models.Model):
     def __str__(self):
         return self.name
 
-    @staticmethod
-    def is_word_in_sentence(word, sentence):
-        sentence_words = word_tokenize(sentence)
-        return word in sentence_words
-
-    @staticmethod
-    def first_sentence_with_word(word, sentences):
-
-        # find first sentence in list that contains word
-        # otherwise return None
-        return next(
-            (s for s in sentences if Document.is_word_in_sentence(word, s)), None
-        )
-
     def ingest(self):
         """Perform natural language processing on this document and store the results. Previous results for this
         document are replaced."""
@@ -87,6 +73,8 @@ class WordResult(models.Model):
 
     @classmethod
     def get_words_by_frequency(cls):
+        """Generate results across all documents in dictionary format. Words are ordered by total count. Each entry
+        includes a sample sentence from each document the word appears in."""
 
         # calculate total count by word across all documents
         # (descending order, exclude words with a count of 1)

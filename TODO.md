@@ -4,6 +4,7 @@ HIGH
 * ~~Collate and display results~~
 * ~~Upload document~~
 * ~~Remove stopwords and punctuation~~
+* ~~Performance~~
 * Unit tests
 
 MEDIUM
@@ -13,10 +14,10 @@ MEDIUM
 * ~~Import NLTK data before startup~~
 * ~~Use a popular stylesheet~~
 * ~~Initialise database before startup~~ N/A
-* Add a lemma column
+* ~~Add a lemma column~~ N/A
 
 LOW
 
 * Add black/tidy instructions
-* Expand contractions
-* Link to document view
+* ~~Expand contractions~~ N/A
+* ~~Link to document view~~ N/A

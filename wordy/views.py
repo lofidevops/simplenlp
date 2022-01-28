@@ -22,6 +22,7 @@ def handle_upload(f: UploadedFile):
 
     existing_queryset = Document.objects.filter(name__exact=name)
 
+    # create new document, or overwrite existing one
     if len(existing_queryset) == 0:
         document = Document(name=name, full_text=content)
     else:
@@ -29,10 +30,19 @@ def handle_upload(f: UploadedFile):
         document.full_text = content
 
     document.save()
-    document.ingest()
+
+    # process document
+    try:
+        document.ingest()
+    except LookupError:
+        raise LookupError(
+            "LookupError while running ingest function. Did you run initwordy before starting the site?"
+        )
 
 
 def index(request):
+    """On GET, generate app form and results. On POST, process the uploaded text file."""
+
     if request.method == "POST":
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():

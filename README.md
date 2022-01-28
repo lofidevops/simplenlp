@@ -58,7 +58,6 @@ And display the updated results
 **This site is not production-ready!**
 
 * Minimal file validation
-* No performance optimisation
 * Cannot specify download location for NLTK data
 * Requires admin access to delete documents
 
@@ -89,6 +88,8 @@ And display the updated results
    ```
    cd simplenlp
    pipenv install
+   # tested on Ubuntu 20.04 LTS
+   # if this fails, try deleting Pipfile.lock
    ```
 
 2. Bootstrap Django:
@@ -108,26 +109,38 @@ And display the updated results
    python manage.py createsuperuser
    # follow prompts to create an admin user
    
-   python runserver
+   python manage.py runserver
    # start Django site
    ```
 
-3. Open http://localhost:8080 in your browser to see the latest
-   results.
+3. Confirm there are no errors or warnings in the logs.
 
-      * If you get an error starting the site, or uploading
-        a file, you probably missed the `initwordy` step above.
+      * If you see a warning, you probably missed the
+        `initwordy` step above.
 
-4. Upload a `.txt` file to add it to the results. (This might take
-   a while. The page will refresh once done.)
+4. Open http://localhost:8000 in your browser
 
-5. Hover over a sample to see the full sentence containing the
-   interesting word.
+      * The results table starts empty.
 
-**Notes**
+5. Choose and upload a text file to add it to the results.
 
-* To view database contents, visit the admin site
-  http://localhost:8080/admin/ and log in with the superuser
+      * You will get an error if you attempt to upload a non-text
+        file. Go back and try again.
+
+      * You will get an error if you missed the `initwordy` step
+        while bootstrapping Django. Stop the site, run the `initwordy`
+        command and try again.
+
+6. Sample sentences are truncated. Hover over a sample to see the
+   full sentence.
+
+7. Keep uploading text files to recalculate the results. Duplicate
+   filenames will overwrite existing documents and related results.
+
+### Notes
+
+* To inspect the database, visit the admin site
+  http://localhost:8000/admin/ and log in with the superuser
   credentials created above.
 
 * To remove a document from the results, you must delete it
