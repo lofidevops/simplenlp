@@ -75,9 +75,8 @@ class WordResult(models.Model):
 
     @classmethod
     def get_words_by_frequency(cls):
-        words_by_frequency = []
 
-        # total count by word across all documents
+        # calculate total count by word across all documents
         # (descending order, exclude words with a count of 1)
         total_queryset = (
             WordResult.objects.values("name")
@@ -87,14 +86,23 @@ class WordResult(models.Model):
             .order_by("-total_count", "name")
         )
 
-        # accumulate occurrences in distinct documents
-        for result in total_queryset:
-            name = result["name"]
-            vd = ViewData(word=name, count=result["total_count"], occurrence={})
+        # convert results to dictionary
+        result = {}
+        for item in total_queryset:
+            name = item["name"]
+            result[name] = ViewData(word=name, count=item["total_count"], occurrence={})
 
-            for item in WordResult.objects.filter(name__exact=name):
-                vd.occurrence[item.document.name] = item.sample
+        # collect all distinct samples
+        sample_queryset = WordResult.objects.values(
+            "name", "document__name", "sample"
+        ).order_by("name", "document__name")
 
-            words_by_frequency.append(vd)
+        # add samples to results
+        for item in sample_queryset:
+            name = item["name"]
+            document = item["document__name"]
 
-        return words_by_frequency
+            if name in result.keys():
+                result[name].occurrence[document] = item["sample"]
+
+        return result

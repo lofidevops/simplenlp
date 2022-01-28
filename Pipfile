@@ -8,6 +8,7 @@ django = "==4.0.1"
 nltk = "==3.6.7"
 
 [dev-packages]
+yappi = "*"
 
 [requires]
 python_version = "3.8"

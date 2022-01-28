@@ -86,10 +86,10 @@
     </thead>
 
     <tbody>
-        {% for result in word_by_frequency %}
+        {% for word, result in word_by_frequency.items %}
             <tr>
                 <td>{{ result.count }}</td>
-                <td>{{ result.word }}</td>
+                <td>{{ word }}</td>
                 <td>
                     {% for document, sample in result.occurrence.items %}
                         <p title="{{ sample }}">{{ sample|truncatechars:20 }} ({{ document }})</p>

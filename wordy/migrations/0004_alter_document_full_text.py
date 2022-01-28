@@ -5,14 +5,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('wordy', '0003_alter_document_full_text'),
-    ]
+    dependencies = [("wordy", "0003_alter_document_full_text")]
 
     operations = [
         migrations.AlterField(
-            model_name='document',
-            name='full_text',
-            field=models.TextField(),
-        ),
+            model_name="document", name="full_text", field=models.TextField()
+        )
     ]
