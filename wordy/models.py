@@ -42,17 +42,29 @@ class Document(models.Model):
         # delete existing results
         WordResult.objects.filter(document=self).delete()
 
-        # parse the full text
-        full_sentences = sent_tokenize(self.full_text)
+        # calculate word frequencies
         full_words = word_tokenize(self.full_text)
         frequencies = FreqDist(full_words)
 
-        # save each word count, along with a sample sentence
-        for word, count in frequencies.items():
-            if word.isalpha() and word.casefold() not in wordy.ENGLISH_STOP_WORDS:
-                sentence = Document.first_sentence_with_word(word, full_sentences)
-                wr = WordResult(name=word, document=self, count=count, sample=sentence)
-                wr.save()
+        # accumulate samples for each word
+        # we iterate by sentence to efficiently cover all samples
+        results_by_word = {}
+        for sentence in sent_tokenize(self.full_text):
+            for word in word_tokenize(sentence):
+                if (
+                    word.isalpha()
+                    and word.casefold() not in wordy.ENGLISH_STOP_WORDS
+                    and word not in results_by_word
+                ):
+                    results_by_word[word] = WordResult(
+                        name=word,
+                        document=self,
+                        count=frequencies[word],
+                        sample=sentence,
+                    )
+
+        # store results with samples
+        WordResult.objects.bulk_create(results_by_word.values())
 
 
 class WordResult(models.Model):
