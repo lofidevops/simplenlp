@@ -66,6 +66,7 @@ And display the updated results
 * Access rights and granular permissions
 * Database instance (i.e. other than SQLite)
 * Fully offline operation (no additional download steps required)
+* Hardened configuration or Docker image
 * Integration testing
 * Languages other than English (American spelling?)
 * Microservice architecture
@@ -74,6 +75,43 @@ And display the updated results
 ## Screenshot
 
 ![Interesting words by frequency](screenshot.png)
+
+## Run from Docker
+
+### Prerequisites
+
+* [Docker Engine](https://docs.docker.com/engine/install/)
+* [Docker Compose](https://docs.docker.com/compose/install/)
+
+### Steps
+
+```bash
+cd simplenlp
+docker-compose up
+# the first time you run this command,
+# it will take a while to build the image
+```
+
+Once the container is running you can visit http://localhost:8000
+
+The default credentials for http://localhost:8000/admin/ are
+username `admin`, password `admin`.
+
+### Usage
+
+1. Open http://localhost:8000 in your browser. The results table
+   starts empty.
+
+2. Choose and upload a text file to add it to the results.
+
+      * You will get an error if you attempt to upload a non-text
+        file. Go back and try again.
+
+3. Sample sentences are truncated. Hover over a sample to see the
+   full sentence. (See screenshot for an example.)
+
+4. Keep uploading text files to recalculate the results. Duplicate
+   filenames will overwrite existing documents and related results.
 
 ## Run from source
 
@@ -86,7 +124,7 @@ And display the updated results
 
 1. Create a virtual environment for Python:
 
-   ```
+   ```bash
    cd simplenlp
    pipenv install
    # tested on Ubuntu 20.04 LTS
@@ -95,7 +133,7 @@ And display the updated results
 
 2. Bootstrap Django:
 
-   ```
+   ```bash
    pipenv shell
    # activate virtual environment
 
@@ -119,33 +157,11 @@ And display the updated results
       * If you see a warning, you probably missed the
         `initwordy` step above.
 
-4. Open http://localhost:8000 in your browser
+4. See the "Usage" and "Notes" sections for Docker for more details.
 
-      * The results table starts empty.
-
-5. Choose and upload a text file to add it to the results.
-
-      * You will get an error if you attempt to upload a non-text
-        file. Go back and try again.
-
-      * You will get an error if you missed the `initwordy` step
-        while bootstrapping Django. Stop the site, run the `initwordy`
-        command and try again.
-
-6. Sample sentences are truncated. Hover over a sample to see the
-   full sentence.
-
-7. Keep uploading text files to recalculate the results. Duplicate
-   filenames will overwrite existing documents and related results.
-
-### Notes
-
-* To inspect the database, visit the admin site
-  http://localhost:8000/admin/ and log in with the superuser
-  credentials created above.
-
-* To remove a document from the results, you must delete it
-  through the admin interface.
+      * You will get an error when uploading text files if you missed
+        the `initwordy` step while bootstrapping Django. Stop the site,
+        run the `initwordy` command and try again.
 
 ## Testing
 
@@ -155,7 +171,7 @@ In this case line coverage  is high (see `coverage.txt`) and it is more
 important to consider case coverage. See `wordy/tests.py` for current
 cases.
 
-```
+```bash
 pipenv install --dev
 # installs developer resources
 
@@ -173,14 +189,16 @@ coverage html
 
 ## Code quality
 
-```
-# coding conventions
+```bash
 black .
-# tests
+# apply coding conventions
+
 coverage run --source='.' manage.py test
 coverage report > coverage.txt
-# confirm no changes have occurred
+# run tests and generate coverage report
+
 git diff --exit-code
+# confirm these commands do not generate changes
 ```
 
 If all tasks pass, your changes are ready for submission.
