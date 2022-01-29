@@ -10,7 +10,7 @@ COPY . /app
 
 ENV LANG="en_US.UTF-8"
 ENV PYTHONUNBUFFERED 1
-RUN pipenv install
+RUN pipenv sync
 RUN pipenv run python manage.py initwordy
 RUN pipenv run python manage.py migrate
 

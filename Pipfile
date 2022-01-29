@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "==4.0.1"
 nltk = "==3.6.7"
+tzdata = "==2021.5"
 
 [dev-packages]
 black = "==21.12b0"
