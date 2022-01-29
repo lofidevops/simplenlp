@@ -2,7 +2,7 @@ from django.core.management import BaseCommand
 import nltk
 
 
-class Command(BaseCommand):
+class Command(BaseCommand):  # pragma: no cover
     help = "Initialise the environment for Wordy"
 
     def handle(self, *args, **options):

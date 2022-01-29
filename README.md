@@ -66,6 +66,7 @@ And display the updated results
 * Access rights and granular permissions
 * Database instance (i.e. other than SQLite)
 * Fully offline operation (no additional download steps required)
+* Integration testing
 * Languages other than English (American spelling?)
 * Microservice architecture
 * REST API
@@ -145,3 +146,68 @@ And display the updated results
 
 * To remove a document from the results, you must delete it
   through the admin interface.
+
+## Testing
+
+Follow the steps below to generate a coverage report.
+
+In this case line coverage  is high (see `coverage.txt`) and it is more
+important to consider case coverage. See `wordy/tests.py` for current
+cases.
+
+```
+pipenv install --dev
+# installs developer resources
+
+coverage run --source='.' manage.py test
+# runs all Django tests
+# branches marked "pragma: no cover" are ignored
+# (typically integration-related issues)
+
+coverage report > coverage.txt
+# generates summary report as coverage.txt
+
+coverage html
+# (optional) generates detailed report as htmlcov/index.html
+```
+
+## Code quality
+
+```
+# coding conventions
+black .
+# tests
+coverage run --source='.' manage.py test
+coverage report > coverage.txt
+# confirm no changes have occurred
+git diff --exit-code
+```
+
+If all tasks pass, your changes are ready for submission.
+Otherwise you need  to fix, commit and validate again.
+
+You can invoke these tasks in any CI/CD pipeline.
+All cleanup and validation tasks should succeed without error or modification.
+
+## Sharing and contributions
+
+Wordy document analyser  
+<https://gitlab.com/lofidevops/simplenlp>  
+Copyright 2022 David Seaward  
+SPDX-License-Identifier: GPL-3.0-or-later  
+
+Shared under GPL-3.0-or-later. We adhere to the Contributor Covenant
+2.0 without modification, and certify origin per DCO 1.1 with a
+signed-off-by line. Contributions under the same terms are welcome.
+
+For details see:
+
+* [COPYING.md], full license text
+* [CODE_OF_CONDUCT.md], full conduct text (report via a private ticket)
+* [CONTRIBUTING.md], full origin text (`git -s`)
+
+<!-- Links -->
+
+[COPYING.md]: COPYING.md
+[CODE_OF_CONDUCT.md]: CODE_OF_CONDUCT.md
+[CONTRIBUTING.md]: CONTRIBUTING.md

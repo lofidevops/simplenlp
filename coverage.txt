@@ -1,0 +1,23 @@
+Name                                                                             Stmts   Miss  Cover
+----------------------------------------------------------------------------------------------------
+manage.py                                                                           12      2    83%
+simplenlp/__init__.py                                                                0      0   100%
+simplenlp/asgi.py                                                                    4      4     0%
+simplenlp/settings.py                                                               19      0   100%
+simplenlp/urls.py                                                                    3      0   100%
+simplenlp/wsgi.py                                                                    4      4     0%
+wordy/__init__.py                                                                    3      0   100%
+wordy/admin.py                                                                       5      0   100%
+wordy/apps.py                                                                        9      0   100%
+wordy/forms.py                                                                       3      0   100%
+wordy/migrations/0001_initial.py                                                     6      0   100%
+wordy/migrations/0002_alter_document_full_text_alter_document_name_and_more.py       4      0   100%
+wordy/migrations/0003_alter_document_full_text.py                                    4      0   100%
+wordy/migrations/0004_alter_document_full_text.py                                    4      0   100%
+wordy/migrations/__init__.py                                                         0      0   100%
+wordy/models.py                                                                     45      0   100%
+wordy/tests.py                                                                      79      0   100%
+wordy/urls.py                                                                        3      0   100%
+wordy/views.py                                                                       5      0   100%
+----------------------------------------------------------------------------------------------------
+TOTAL                                                                              212     10    95%

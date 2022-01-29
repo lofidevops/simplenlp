@@ -6,7 +6,7 @@ from .forms import UploadForm
 from .models import Document, WordResult
 
 
-def handle_upload(f: UploadedFile):
+def handle_upload(f: UploadedFile):  # pragma: no cover
     """Store uploaded file as a document. Existing documents (determined by filename) are overwritten.
     Non-text files are rejected."""
 
@@ -40,7 +40,7 @@ def handle_upload(f: UploadedFile):
         )
 
 
-def index(request):
+def index(request):  # pragma: no cover
     """On GET, generate app form and results. On POST, process the uploaded text file."""
 
     if request.method == "POST":
