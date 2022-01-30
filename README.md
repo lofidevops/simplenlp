@@ -66,11 +66,14 @@ And display the updated results
 * Access rights and granular permissions
 * Database instance (i.e. other than SQLite)
 * Fully offline operation (no additional download steps required)
-* Hardened configuration or Docker image
 * Integration testing
 * Languages other than English (American spelling?)
-* Microservice architecture
-* REST API
+* Security-hardened configuration
+
+### Next steps
+
+See [TODO.md](TODO.md) for strategies to add NLP features, achieve
+high scalability and improve UI responsiveness.
 
 ## Screenshot
 
